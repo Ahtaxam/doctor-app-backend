@@ -112,11 +112,18 @@ export const getUserProfile = async (req, res) => {
 export const getMyAppointments = async (req, res) => {
   try {
     const bookings = await Booking.find({ user: req.userId });
-    const doctorIds = bookings.map(el => el.doctor.id);
+    const doctorIds = [...new Set(bookings.map((el) => el.doctor._id))];
 
-    const doctors = await Doctor.find({ _id: { $in: doctorIds } }).select(
+    const doctors = JSON.parse(JSON.stringify(await Doctor.find({ _id: { $in: doctorIds } }).select(
       "-password"
-    );
+    )))
+      for(let i = 0; i < doctors.length; ++i){
+        let index = bookings.findIndex((res) =>
+       res.doctor._id.toString() === doctors[i]._id.toString()
+        );
+
+        doctors[i].bookingTime = index !== -1 ?  bookings[i].bookingTime:''
+      }
 
     res.status(200).json({ success: true, message: "Success", data: doctors });
   } catch (error) {
