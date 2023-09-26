@@ -18,6 +18,10 @@ const bookingSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
+
+    bookingTime:{
+      type:Object,
+    }
   },
   { timestamps: true }
 );
