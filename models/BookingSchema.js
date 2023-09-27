@@ -18,15 +18,16 @@ const bookingSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
+
+    bookingTime:{
+      type:Object,
+    }
   },
   { timestamps: true }
 );
 
 bookingSchema.pre(/^find/, function (next) {
-  this.populate("user").populate({
-    path: "doctor",
-    select: "name",
-  });
+  this.populate("doctor")
 
   next();
 });

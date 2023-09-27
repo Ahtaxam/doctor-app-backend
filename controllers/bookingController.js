@@ -21,7 +21,7 @@ export const getCheckoutSession = async (req, res) => {
       line_items: [
         {
           price_data: {
-            currency: "RS",
+            currency: "USD",
             unit_amount: doctor.ticketPrice * 300,
             product_data: {
               name: doctor.name,
@@ -40,6 +40,7 @@ export const getCheckoutSession = async (req, res) => {
       user: user._id,
       ticketPrice: doctor.ticketPrice,
       session: session.id,
+      bookingTime:req.body
     });
 
     // Save the booking object to the database
