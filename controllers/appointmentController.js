@@ -2,7 +2,6 @@ import DoctorAppointment from "../models/DoctorAppointment.js";
 import mongoose from "mongoose";
 
 export const fillAppointments = async (req, res) => {
-    console.log("body: ", req.body);
   try {
     const id = new mongoose.Types.ObjectId(req.body.doctorId);
     const appointmentsSlots = await DoctorAppointment.findOne({ doctorId: id });
@@ -31,7 +30,6 @@ export const fillAppointments = async (req, res) => {
       }
     );
 
-    console.log(response);
 
     if (response === null) {
       await DoctorAppointment.findOneAndUpdate(
