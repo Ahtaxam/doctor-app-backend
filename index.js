@@ -10,6 +10,7 @@ import doctorRoute from "./routes/doctor.js";
 import reviewRoute from "./routes/review.js";
 import bookingRoute from "./routes/booking.js";
 import appointmentsRoute from "./routes/appointment.js"
+import emailRoute from "./routes/email.js"
 
 dotenv.config();
 
@@ -50,6 +51,7 @@ app.use("/api/v1/doctors", doctorRoute);
 app.use("/api/v1/reviews", reviewRoute);
 app.use("/api/v1/bookings", bookingRoute);
 app.use('/api/v1/doctorappointments', appointmentsRoute)
+app.use('/api/v1/sendemail', emailRoute)
 
 app.listen(port, () => {
   connectDB();
