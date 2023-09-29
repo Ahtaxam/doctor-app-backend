@@ -112,13 +112,7 @@ export const getUserProfile = async (req, res) => {
 export const getMyAppointments = async (req, res) => {
   try {
     const bookings = await Booking.find({ user: req.userId });
-    const doctorIds = bookings.map(el => el.doctor.id);
-
-    const doctors = await Doctor.find({ _id: { $in: doctorIds } }).select(
-      "-password"
-    );
-
-    res.status(200).json({ success: true, message: "Success", data: doctors });
+    res.status(200).json({ success: true, message: "Success", data: bookings });
   } catch (error) {
     console.log(error);
     res.status(500).json({
