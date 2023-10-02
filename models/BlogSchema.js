@@ -1,12 +1,25 @@
 import mongoose from "mongoose";
-
-const BlogSchema = new mongoose.Schema({
-  title: { type: String, required: true },
-  content: { type: String, required: true },
-  author: { type: mongoose.Schema.Types.ObjectId, ref: "Doctor", required: true},
-  tags: [{ type: String }],
-  createdAt: { type: Date, default: Date.now },
-  updatedAt: { type: Date, default: Date.now },
+const blogSchema = new mongoose.Schema({
+  doctorId: {
+    type: mongoose.Types.ObjectId,
+    ref: "Doctor",
+    required: true,
+  },
+  title: {
+    type: String,
+    required: true,
+  },
+  summary: {
+    type: String,
+    required: true,
+  },
+  content: {
+    type: String,
+  },
+  image: {
+    type: String,
+  },
 });
 
-export default mongoose.model("Blog", BlogSchema);
+
+export default mongoose.model('Blog', blogSchema)
