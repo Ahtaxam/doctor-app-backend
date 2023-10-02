@@ -8,11 +8,7 @@
     "jsonwebtoken": "^9.0.0",
     "mongodb": "^5.3.0",
     "mongoose": "^7.1.0",
-<<<<<<< HEAD
-    "nodemon": "^3.0.1",
-=======
     "nodemailer": "^6.9.5",
->>>>>>> 427db5027b248390daea008ffa08d3c9ba129aa9
     "stripe": "^12.5.0"
   },
   "name": "backend",

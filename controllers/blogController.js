@@ -16,6 +16,7 @@ const createBlog = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: "Failed to create a blog post" });
   }
+
 };
 
 // Get a list of all blog posts
