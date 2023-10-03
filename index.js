@@ -13,6 +13,7 @@ import appointmentsRoute from "./routes/appointment.js";
 import emailRoute from "./routes/email.js";
 import contactRoute from "./routes/contact.js";
 import blogRoute from "./routes/blog.js";
+import resetPasswordRoute from "./routes/forgotpassword.js"
 
 dotenv.config();
 
@@ -56,6 +57,7 @@ app.use("/api/v1/doctorappointments", appointmentsRoute);
 app.use("/api/v1/sendemail", emailRoute);
 app.use("/api/v1/contact", contactRoute);
 app.use("/api/v1/blogs", blogRoute);
+app.use("/api/v1/resetpassword", resetPasswordRoute)
 
 app.listen(port, () => {
   connectDB();
