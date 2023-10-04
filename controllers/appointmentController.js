@@ -9,7 +9,10 @@ export const fillAppointments = async (req, res) => {
     if (appointmentsSlots === null) {
       const booked = new DoctorAppointment({
         doctorId: req.body.doctorId,
-        selectedSlots: [req.body.selectedSlots],
+        selectedSlots:{
+          day:req.body.selectedSlots.day,
+          slots:req.body.selectedSlots.time
+        }
       });
 
       await booked.save();

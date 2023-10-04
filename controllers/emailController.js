@@ -1,5 +1,6 @@
 import nodemailer from "nodemailer";
 import DoctorSchema from "../models/DoctorSchema.js";
+import { handleEmail } from "../utils/sendmail.js";
 
 export const sendEmail = async (req, res) => {
   const { day, time } = req.body.bookedTime;
@@ -8,25 +9,11 @@ export const sendEmail = async (req, res) => {
       "email"
     );
 
-    const mailTransporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.SENDER_MAIL_ADDRESS,
-        pass: process.env.SENDER_MAIL_PASSWORD,
-      },
-    });
+    const subject = "Booking Confirm";
+    const text = `An Appointment is Booked With you on ${day.toUpperCase()} at ${time.toUpperCase()}`;
 
-    let detail = {
-      from: process.env.SENDER_MAIL_ADDRESS,
-      to: email,
-      subject: "Booking Confirm",
-      text: `An Appointment is Booked With you on ${day
-        .toUpperCase()
-        } at ${time.toUpperCase()}`,
-    };
-
-    const result = mailTransporter.sendMail(detail);
-    res.status(200).json({message:"Appointment Booked", data:result.messageId});
+    const messageId = await handleEmail(email, subject, text);
+    res.status(200).json({ message: "Appointment Booked", data: messageId });
   } catch (e) {
     console.log(e);
   }
