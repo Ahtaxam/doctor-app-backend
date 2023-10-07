@@ -9,7 +9,7 @@ export const uploadBlog = async (req, res) => {
       content,
       doctorId,
       image,
-      summary
+      summary 
     });
 
     const savedBlog = await blog.save();
@@ -23,7 +23,7 @@ export const uploadBlog = async (req, res) => {
 
 export const getBlogs = async (req, res) => {
   try {
-    const blogs = await Blog.find().populate("doctorId", "name"); // Populate author field with user details
+    const blogs = await Blog.find().populate("doctorId"); // Populate author field with user details
     res.json(blogs);
   } catch (error) {
     console.log(error);
@@ -34,7 +34,7 @@ export const getBlogs = async (req, res) => {
 
 export const getBlogById = async (req, res) => {
   try {
-    const blog = await Blog.findById(req.params.id).populate("doctorId", "name");
+    const blog = await Blog.findById(req.params.id).populate("doctorId");
     if (!blog) {
       return res.status(404).json({ error: "Blog post not found" });
     }
