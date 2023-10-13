@@ -114,7 +114,7 @@ export const getDoctorProfile = async (req, res) => {
       res.status(404).json({ message: "User not found" });
     }
 
-    const appointments = await Booking.find({ doctor: userId });
+    const appointments = await Booking.find({ doctor: userId }).populate('user');
 
     const { password, ...rest } = user._doc;
 

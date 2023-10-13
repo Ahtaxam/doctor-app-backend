@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 
+
 import authRoute from "./routes/auth.js";
 import userRoute from "./routes/user.js";
 import doctorRoute from "./routes/doctor.js";
@@ -25,9 +26,15 @@ const corsOptions = {
   origin: true,
 };
 
+// middleware
+app.use(cors(corsOptions));
+app.use(express.json({limit: '50mb'}));
+app.use(cookieParser());
+
 app.get("/", (req, res) => {
   res.send("hello server");
 });
+
 
 // database connection
 mongoose.set("strictQuery", false);
@@ -44,10 +51,7 @@ const connectDB = async () => {
   }
 };
 
-// middleware
-app.use(cors(corsOptions));
-app.use(express.json());
-app.use(cookieParser());
+
 
 app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/users", userRoute);
