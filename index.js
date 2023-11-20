@@ -16,7 +16,9 @@ import contactRoute from "./routes/contact.js";
 import blogRoute from "./routes/blog.js";
 import forgotPasswordRoute from "./routes/forgotpassword.js"
 import resetPasswordRoute from "./routes/resetPassword.js";
-import otherDoctorsRoute from "./routes/otherdoctors.js"
+import otherDoctorsRoute from "./routes/otherdoctors.js";
+import appReviewRoute from "./routes/appReview.js"
+
 dotenv.config();
 
 const app = express();
@@ -64,7 +66,8 @@ app.use("/api/v1/contact", contactRoute);
 app.use("/api/v1/blogs", blogRoute);
 app.use("/api/v1/forgotpassword", forgotPasswordRoute);
 app.use("/api/v1/resetpassword", resetPasswordRoute);
-app.use("/api/v1/otherdoctors", otherDoctorsRoute)
+app.use("/api/v1/otherdoctors", otherDoctorsRoute);
+app.use("/api/v1/appreviews", appReviewRoute)
 
 app.listen(port, () => {
   connectDB();
